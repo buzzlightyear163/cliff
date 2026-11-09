@@ -3,12 +3,11 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useSite } from "../lib/site";
 import { short, usd } from "../lib/format";
 
-export function Mark({ size = 28, color = "var(--flint)" }: { size?: number; color?: string }) {
-  // A plateau that holds, then a slope down to the water: the shape of a CLIFF lock.
+export function Mark({ size = 28, color = "var(--flint)", accent = "var(--sea)" }: { size?: number; color?: string; accent?: string }) {
+  // Pixel padlock. The blue steps inside are the release: flat while locked, then stepping down.
   return (
-    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
-      <path d="M3 28 V7 H17.5 L29 28 Z" fill={color} />
-      <path d="M3 14.2 H21.4 M3 20.6 H24.9" stroke="var(--chalk)" strokeWidth="1.6" />
+    <svg width={size} height={size} viewBox="1.5 -1.5 13 16" shapeRendering="crispEdges" aria-hidden="true">
+      <rect x="5" y="0" width="6" height="1" fill={color}/><rect x="4" y="1" width="2" height="1" fill={color}/><rect x="10" y="1" width="2" height="1" fill={color}/><rect x="4" y="2" width="1" height="1" fill={color}/><rect x="11" y="2" width="1" height="1" fill={color}/><rect x="4" y="3" width="1" height="1" fill={color}/><rect x="11" y="3" width="1" height="1" fill={color}/><rect x="4" y="4" width="1" height="1" fill={color}/><rect x="11" y="4" width="1" height="1" fill={color}/><rect x="2" y="5" width="12" height="1" fill={color}/><rect x="2" y="6" width="12" height="1" fill={color}/><rect x="2" y="7" width="2" height="1" fill={color}/><rect x="9" y="7" width="5" height="1" fill={color}/><rect x="2" y="8" width="2" height="1" fill={color}/><rect x="10" y="8" width="4" height="1" fill={color}/><rect x="2" y="9" width="2" height="1" fill={color}/><rect x="11" y="9" width="3" height="1" fill={color}/><rect x="2" y="10" width="2" height="1" fill={color}/><rect x="12" y="10" width="2" height="1" fill={color}/><rect x="2" y="11" width="12" height="1" fill={color}/><rect x="2" y="12" width="12" height="1" fill={color}/><rect x="4" y="7" width="5" height="1" fill={accent}/><rect x="4" y="8" width="6" height="1" fill={accent}/><rect x="4" y="9" width="7" height="1" fill={accent}/><rect x="4" y="10" width="8" height="1" fill={accent}/>
     </svg>
   );
 }
