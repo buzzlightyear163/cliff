@@ -1,4 +1,5 @@
 import type { Elsewhere } from "../lib/api";
+import Led from "./Led";
 
 // One mark per recent LaunchLab launch. Filled = the dev bag was locked.
 export default function Tally({ data }: { data: Elsewhere | null }) {
@@ -17,9 +18,11 @@ export default function Tally({ data }: { data: Elsewhere | null }) {
   return (
     <div className="panel tally">
       <div className="tally-big num">
-        {data.noLock} of the last {data.total}
+        <div className="tally-led">
+          <Led text={String(data.noLock)} pitch={8} label={`${data.noLock} of the last ${data.total}`} />
+        </div>
         <span>
-          LaunchLab launches handed the dev the whole bag on day one. {locked === 0 ? "Not one of them" : locked === 1 ? "Only one" : `Only ${locked}`} locked any of it.
+          of the last {data.total} LaunchLab launches handed the dev the whole bag on day one. {locked === 0 ? "Not one of them" : locked === 1 ? "Only one" : `Only ${locked}`} locked any of it.
         </span>
       </div>
       <div className="ticks" aria-hidden="true">
@@ -29,11 +32,11 @@ export default function Tally({ data }: { data: Elsewhere | null }) {
       </div>
       <div className="legend">
         <span>
-          <i style={{ background: "var(--sea)" }} />
+          <i style={{ background: "var(--accent)", boxShadow: "0 0 8px rgba(92,198,224,.7)" }} />
           Dev bag locked
         </span>
         <span>
-          <i style={{ boxShadow: "inset 0 0 0 1px var(--stone-3)" }} />
+          <i style={{ background: "var(--dot)" }} />
           Nothing locked
         </span>
       </div>

@@ -3,7 +3,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useSite } from "../lib/site";
 import { short, usd } from "../lib/format";
 
-export function Mark({ size = 28, color = "var(--flint)", accent = "var(--sea)" }: { size?: number; color?: string; accent?: string }) {
+export function Mark({ size = 28, color = "var(--ink)", accent = "var(--accent)" }: { size?: number; color?: string; accent?: string }) {
   // Pixel padlock. The blue steps inside are the release: flat while locked, then stepping down.
   return (
     <svg width={size} height={size} viewBox="1.5 -1.5 13 16" shapeRendering="crispEdges" aria-hidden="true">
@@ -101,7 +101,7 @@ export function Footer() {
     <footer className="footer">
       <div className="wrap">
         <div>
-          <div style={{ display: "flex", gap: 10, alignItems: "center", color: "var(--flint)" }}>
+          <div style={{ display: "flex", gap: 10, alignItems: "center", color: "var(--ink)" }}>
             <Mark size={20} />
             <b style={{ fontVariationSettings: '"wdth" 125', fontWeight: 900 }}>CLIFF</b>
           </div>

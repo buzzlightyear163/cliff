@@ -62,7 +62,7 @@ export default function Home() {
                 <Seg label="Release" options={UNLOCK_OPTIONS} value={unlock} onChange={setUnlock} format={(v) => `${v}d`} />
               </div>
               <div className="control control-cta">
-                <Link className="btn" to={`/launch${q}`}>
+                <Link className="btn accent" to={`/launch${q}`}>
                   Launch with this lock
                 </Link>
               </div>

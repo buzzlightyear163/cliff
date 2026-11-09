@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import CoinTable from "../components/CoinTable";
 import Tally from "../components/Tally";
+import Led from "../components/Led";
 import { useBoard } from "../lib/board";
 import { ago, days, pct, tokens } from "../lib/format";
 
@@ -27,19 +28,19 @@ export default function Board() {
         <div className="stats">
           <div className="stat">
             <div className="k">Launched on CLIFF</div>
-            <div className="v">{s ? s.launched : "–"}</div>
+            <div className="v led-wrap"><Led text={s ? String(s.launched) : "-"} pitch={4.5} /></div>
           </div>
           <div className="stat">
             <div className="k">On the curve</div>
-            <div className="v">{s ? s.onCurve : "–"}</div>
+            <div className="v led-wrap"><Led text={s ? String(s.onCurve) : "-"} pitch={4.5} /></div>
           </div>
           <div className="stat">
             <div className="k">Graduated</div>
-            <div className="v">{s ? s.graduated : "–"}</div>
+            <div className="v led-wrap"><Led text={s ? String(s.graduated) : "-"} pitch={4.5} /></div>
           </div>
           <div className="stat">
             <div className="k">Dev tokens still locked</div>
-            <div className="v">{s ? tokens(s.lockedTokens) : "–"}</div>
+            <div className="v led-wrap"><Led text={s ? tokens(s.lockedTokens) : "-"} pitch={4.5} /></div>
           </div>
         </div>
       </div>

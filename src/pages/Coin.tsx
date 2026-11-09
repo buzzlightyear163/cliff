@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useWallet } from "@solana/wallet-adapter-react";
 import CrossSection from "../components/CrossSection";
+import Led from "../components/Led";
 import { coinPhase, mcapUsd, useNow } from "../components/CoinTable";
 import { getJSON, postJSON, type Coin } from "../lib/api";
 import { useSendTx, useSite } from "../lib/site";
@@ -121,13 +122,9 @@ export default function CoinPage() {
       </div>
 
       <p className="status-line">
-        {ph.phase === "curve" && <>On the curve, {pct(coin.fill, 1)} filled. The dev bag stays locked until {coin.cliffDays} days after graduation.</>}
+        {ph.phase === "curve" && <>On the curve. The dev bag stays locked until {coin.cliffDays} days after graduation, then releases over {coin.unlockDays} days.</>}
         {coin.status !== "curve" && ph.phase === "curve" && <> Graduation is being processed.</>}
-        {ph.phase === "cliff" && (
-          <>
-            Graduated. The dev bag starts unlocking in <span className="countdown">{until(startTime - now)}</span>.
-          </>
-        )}
+        {ph.phase === "cliff" && <>Graduated. The cliff is running, and nothing in the dev bag can move until it ends.</>}
         {ph.phase === "unlocking" && (
           <>
             Releasing. {pct(unlockedRate, 1)} of the dev bag is unlocked, all of it by {date(end)}.
@@ -135,6 +132,27 @@ export default function CoinPage() {
         )}
         {ph.phase === "unlocked" && <>The dev bag finished releasing on {date(end)}.</>}
       </p>
+
+      <div className="countdown-led">
+        {ph.phase === "curve" && (
+          <>
+            <span className="k">Curve filled</span>
+            <Led text={`${(coin.fill * 100).toFixed(1)}%`} pitch={6} />
+          </>
+        )}
+        {ph.phase === "cliff" && (
+          <>
+            <span className="k">Dev bag starts unlocking in</span>
+            <Led text={until(startTime - now).replace(/ /g, " ")} pitch={6} color="var(--accent)" />
+          </>
+        )}
+        {ph.phase === "unlocking" && (
+          <>
+            <span className="k">Dev bag unlocked so far</span>
+            <Led text={`${(unlockedRate * 100).toFixed(1)}%`} pitch={6} color="var(--accent)" />
+          </>
+        )}
+      </div>
 
       <div className="section-card">
         <CrossSection lockRate={coin.lockRate} cliffDays={coin.cliffDays} unlockDays={coin.unlockDays} now={nowMark} />

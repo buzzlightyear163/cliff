@@ -320,7 +320,7 @@ export default function Launch() {
             </div>
           )}
           <div className="go">
-            <button className="btn wide" onClick={launch} disabled={busy || (!!publicKey && (!!missing || problems.length > 0))}>
+            <button className="btn wide accent" onClick={launch} disabled={busy || (!!publicKey && (!!missing || problems.length > 0))}>
               {!publicKey ? "Connect wallet to launch" : busy ? "Launching…" : `Launch ${symbol ? "$" + symbol : "coin"} with this lock`}
             </button>
             {(error || (publicKey && (problems[0] || missing))) && <div className="errors">{error || problems[0] || missing}</div>}
