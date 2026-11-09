@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "isolatedModules": false,
+    "outDir": "../.api-build"
+  },
+  "include": ["./**/*.ts", "../shared/**/*.ts"]
+}
