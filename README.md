@@ -24,3 +24,15 @@ A launchpad on Raydium LaunchLab where the dev's bag is locked on-chain. The bag
 | `CLIFF_CA` | $CLIFF contract address. Shows the live strip on every page once set. |
 | `X_URL` | X profile link. |
 | `SITE_URL` | Public site URL, used in token metadata. |
+
+## Live
+
+Production: https://cliff-sage-delta.vercel.app
+
+`/api/selftest` simulates two full launches (lock + vesting, and lock + vesting + dev buy) against mainnet without sending anything.
+
+## Own platform (optional, recommended)
+
+1. Open `/setup` with the wallet that should receive platform fees and sign "Create platform".
+2. Sign "Write rule and enforce" so the program itself rejects launches that lock too little.
+3. Set `PLATFORM_ADMIN` in Vercel to that wallet and redeploy.
