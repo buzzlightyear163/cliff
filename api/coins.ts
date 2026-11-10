@@ -39,6 +39,7 @@ export default handle(async (_req, res) => {
   }
   const registry = await listJson<{ mint: string }>("launches/");
   const mints = registry.map((r) => r.mint);
+  if (process.env.CLIFF_CA) mints.unshift(process.env.CLIFF_CA.trim());
   const own = ownPlatformId();
   if (own) {
     try {
